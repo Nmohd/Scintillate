@@ -16,18 +16,38 @@ function CharacterProvider({ children }) {
         setIsLoading(true);
         const res = await fetch(`${BASEURL}people/`);
         const data = await res.json();
-        console.log("data", data);
+        // console.log("data", data);
         setCharacterData(data);
         setIsLoading(false);
       } catch {
         alert("There was an error loading data....");
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchCharacters();
   }, []);
 
+  async function getCharacter(id) {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASEURL}people/${id}`);
+      const data = await res.json();
+      //   console.log("data", data);
+      setCurrentCharacter(data);
+    //   console.log("loading false after this");
+      setIsLoading(false);
+    } catch {
+      alert("There was an error loading data....");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
-    <CharacterContext.Provider value={{ characterData, isLoading }}>
+    <CharacterContext.Provider
+      value={{ characterData, isLoading, currentCharacter, getCharacter }}
+    >
       {children}
     </CharacterContext.Provider>
   );
