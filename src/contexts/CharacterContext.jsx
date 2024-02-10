@@ -9,9 +9,9 @@ function CharacterProvider({ children }) {
   const [characterData, setCharacterData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [currentCharacter, setCurrentCharacter] = useState({});
-  //   const [paginatedData, setPaginatedData] = useState({});
+
   let [counter, setCounter] = useState(1);
-  const [like, setLike] = useState(false);
+  
   console.log(counter);
 
   useEffect(() => {
@@ -20,7 +20,6 @@ function CharacterProvider({ children }) {
         setIsLoading(true);
         const res = await fetch(`${BASEURL}people/`);
         const data = await res.json();
-        // console.log("data", data);
         setCharacterData(data);
         setIsLoading(false);
       } catch {
@@ -37,9 +36,7 @@ function CharacterProvider({ children }) {
       setIsLoading(true);
       const res = await fetch(`${BASEURL}people/${id}`);
       const data = await res.json();
-      //   console.log("data", data);
       setCurrentCharacter(data);
-      //   console.log("loading false after this");
       setIsLoading(false);
     } catch {
       alert("There was an error loading data....");
@@ -52,34 +49,34 @@ function CharacterProvider({ children }) {
     try {
       console.log("context counter:", counter);
       setIsLoading(true);
-      //   const res = await fetch(`${BASEURL}people/page=${1}`);
       const res = await fetch(`${BASEURL}people/?page=${counter}`);
       const data = await res.json();
-      //   console.log("data", data);
       setCharacterData(data);
-      //   console.log(paginatedData);
       setIsLoading(false);
     } catch {
-      alert("There was an error loading data....page");
+      alert("There was an error loading data....");
     } finally {
       setIsLoading(false);
     }
   }
 
   let onClickNextHandler = () => {
-    if (counter == 9) return;
+    if (counter == 9) return alert("You are on the last page...");
     setCounter(counter + 1);
     console.log(counter + 1);
     pagination(counter + 1);
+    localStorage.setItem("myCat", "Tom");
+    sessionStorage.setItem("mydog", "sheeba");
   };
-  // console.log(paginatedData);
 
   let onClickPreviousHandler = () => {
-    if (counter <= 1) return;
+    if (counter <= 1) return alert("You are on the first page...");
     setCounter(counter - 1);
     console.log(counter - 1);
     pagination(counter - 1);
   };
+
+
 
   return (
     <CharacterContext.Provider
@@ -88,11 +85,9 @@ function CharacterProvider({ children }) {
         isLoading,
         currentCharacter,
         getCharacter,
-        like,
         counter,
         onClickNextHandler,
         onClickPreviousHandler,
-        pagination,
       }}
     >
       {children}
