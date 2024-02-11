@@ -11,7 +11,6 @@ const CharacterList = () => {
   let characters = characterData.results;
   if (characters == undefined) return <Loading />;
 
-  console.log(characters);
 
   return (
     <>

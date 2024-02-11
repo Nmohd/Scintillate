@@ -12,8 +12,6 @@ function CharacterProvider({ children }) {
 
   let [counter, setCounter] = useState(1);
 
-  console.log(counter);
-
   useEffect(() => {
     async function fetchCharacters() {
       try {
@@ -47,7 +45,6 @@ function CharacterProvider({ children }) {
 
   async function pagination(counter) {
     try {
-      console.log("context counter:", counter);
       setIsLoading(true);
       const res = await fetch(`${BASEURL}people/?page=${counter}`);
       const data = await res.json();
@@ -63,7 +60,7 @@ function CharacterProvider({ children }) {
   let onClickNextHandler = () => {
     if (counter == 9) return alert("You are on the last page...");
     setCounter(counter + 1);
-    console.log(counter + 1);
+
     pagination(counter + 1);
     localStorage.setItem("myCat", "Tom");
     sessionStorage.setItem("mydog", "sheeba");
@@ -72,7 +69,7 @@ function CharacterProvider({ children }) {
   let onClickPreviousHandler = () => {
     if (counter <= 1) return alert("You are on the first page...");
     setCounter(counter - 1);
-    console.log(counter - 1);
+
     pagination(counter - 1);
   };
 

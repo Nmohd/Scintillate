@@ -25,9 +25,7 @@ import {
 const Character = () => {
   const { getCharacter, isLoading, currentCharacter } = useCharacter();
   let [filmTitles, setFilmTitles] = useState();
-  const { id, liked } = useParams();
-  const favourite = liked;
-  console.log(favourite);
+  const { id } = useParams();
 
   const {
     name,
@@ -59,7 +57,7 @@ const Character = () => {
 
   if (isLoading || !currentCharacter) return <Loading />;
 
-  console.log(filmTitles);
+
   return (
     // <Container>
     <Center mt="10%">
@@ -105,8 +103,6 @@ const Character = () => {
                 </Text>
                 <Text>Mass: {mass}</Text>
                 <Text>Skin Color: {skin_color}</Text>
-
-  
               </Grid>
             </Center>
           </Stack>
