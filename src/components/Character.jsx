@@ -106,9 +106,7 @@ const Character = () => {
                 <Text>Mass: {mass}</Text>
                 <Text>Skin Color: {skin_color}</Text>
 
-                {/* <Text color="blue.600" fontSize="2xl">
-              $450
-            </Text> */}
+  
               </Grid>
             </Center>
           </Stack>

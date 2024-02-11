@@ -8,8 +8,6 @@ import Footer from "./Footer";
 const CharacterList = () => {
   const { characterData } = useCharacter();
 
-  // if (isLoading) return <Loading />;
-
   let characters = characterData.results;
   if (characters == undefined) return <Loading />;
 

@@ -29,7 +29,7 @@ const Footer = () => {
           </Box>
           <Button
             borderRadius="md"
-            // colorScheme="blue"
+            
             onClick={onClickNextHandler}
           >
             <FcNext />
