@@ -63,7 +63,13 @@ const Character = () => {
   return (
     // <Container>
     <Center mt="10%">
-      <Card minW="40%" boxShadow="dark-lg" pt={5}>
+      <Card
+        minW="40%"
+        boxShadow="dark-lg"
+        pt={5}
+        border="1px"
+        borderColor="red"
+      >
         <CardBody>
           <Center>
             <Avatar
@@ -87,22 +93,18 @@ const Character = () => {
                 </GridItem>
                 <GridItem w="100%" h="10">
                   <Text>
-                    <span>Eye Color:</span> {eye_color}
+                    Eye Color:
+                    {eye_color}
                   </Text>
                 </GridItem>
 
+                <Text>Height: {height}</Text>
                 <Text>
-                  <span>Height:</span> {height}
+                  Hair Color:
+                  {hair_color}
                 </Text>
-                <Text>
-                  <span>Hair Color:</span> {hair_color}
-                </Text>
-                <Text>
-                  <span>Mass:</span> {mass}
-                </Text>
-                <Text>
-                  <span>Skin Color:</span> {skin_color}
-                </Text>
+                <Text>Mass: {mass}</Text>
+                <Text>Skin Color: {skin_color}</Text>
 
                 {/* <Text color="blue.600" fontSize="2xl">
               $450
