@@ -11,7 +11,7 @@ function CharacterProvider({ children }) {
   const [currentCharacter, setCurrentCharacter] = useState({});
 
   let [counter, setCounter] = useState(1);
-  
+
   console.log(counter);
 
   useEffect(() => {
@@ -75,8 +75,6 @@ function CharacterProvider({ children }) {
     console.log(counter - 1);
     pagination(counter - 1);
   };
-
-
 
   return (
     <CharacterContext.Provider

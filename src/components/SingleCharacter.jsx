@@ -1,34 +1,28 @@
 /* eslint-disable react/prop-types */
 
 // import { useCharacter } from "../contexts/CharacterContext";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { extractNumberFromUrl } from "../utils/supportingFunctions";
-import { useEffect, useState } from "react";
+import { PiHeartStraightFill, PiHeartStraightLight } from "react-icons/pi";
+import { Avatar, ListItem, Box, Container, Flex } from "@chakra-ui/react";
 
 const SingleCharacter = ({ characterDetails }) => {
-  // State to track whether the character is liked
   const [liked, setLiked] = useState(false);
-  // const { currentCharacter } = useCharacter();
-  const { name, url, favourite } = characterDetails;
-  //   console.log("cdd", characterDetails);
-  console.log(favourite);
+  const { name, url } = characterDetails;
 
   const urlId = extractNumberFromUrl(url);
-  //   console.log(urlId);
 
-  // Load liked characters from local storage when component mounts
   useEffect(() => {
     const likedCharacters =
       JSON.parse(localStorage.getItem("likedCharacters")) || {};
     setLiked(likedCharacters[name] || false);
   }, [name]);
 
-  // Function to handle liking/unliking a character
   const toggleLike = () => {
     const updatedLiked = !liked;
     setLiked(updatedLiked);
 
-    // Update liked characters in local storage
     const likedCharacters =
       JSON.parse(localStorage.getItem("likedCharacters")) || {};
     likedCharacters[name] = updatedLiked;
@@ -36,11 +30,49 @@ const SingleCharacter = ({ characterDetails }) => {
   };
 
   return (
-    <li>
-      <Link to={`characterDetails/${urlId}`}>{name}</Link>
+    <>
+      <Container maxW="md">
+        <Box
+          borderRadius="md"
+          w="100%"
+          p={2}
+          boxShadow="xs"
+          rounded="md"
+          bg="white"
+        >
+          <Flex
+            minWidth="max-content"
+            alignItems="center"
+            gap="2"
+            color="balck"
+            justifyContent="space-between"
+          >
+            <Link to={`characterDetails/${urlId}/${liked}`}>
+              <ListItem>
+                <Flex alignItems="center" gap="5">
+                  <Avatar name={name} src="https://bit.ly/tioluwani-kolawole" />
+                  <h1>{name}</h1>
+                </Flex>
+              </ListItem>
+            </Link>
 
-      <button onClick={toggleLike}>{liked ? "Unlike" : "Like"}</button>
-    </li>
+            <button onClick={toggleLike}>
+              {liked ? (
+                <PiHeartStraightFill
+                  color="red"
+                  style={{ height: "40px", width: "40px" }}
+                />
+              ) : (
+                <PiHeartStraightLight
+                  color="red"
+                  style={{ height: "40px", width: "40px" }}
+                />
+              )}
+            </button>
+          </Flex>
+        </Box>
+      </Container>
+    </>
   );
 };
 

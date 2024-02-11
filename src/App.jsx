@@ -1,8 +1,9 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { CharacterProvider } from "./contexts/CharacterContext.jsx";
-import List from "./components/List.jsx";
+import List from "./components/CharacterList.jsx";
 import Character from "./components/Character.jsx";
+import "./App.css";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<List />} />
-          <Route path="characterDetails/:id" element={<Character />} />
+          <Route path="characterDetails/:id/:liked" element={<Character />} />
         </Routes>
       </BrowserRouter>
     </CharacterProvider>
