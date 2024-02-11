@@ -122,7 +122,7 @@ const Character = () => {
                 ))
               ) : (
                 <Center>
-                  <Spinner />
+                  <Spinner color="red" />
                 </Center>
               )}
             </Grid>
